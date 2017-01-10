@@ -1,15 +1,23 @@
 ---
 memory: 1G
 instances: 1
+services:
+- movie-fun-sso
+env:
+  TRUST_CERTS: api.cfapps-01.haas-66.pez.pivotal.io,basic-sso.login.run-01.haas-66.pez.pivotal.io
 applications:
 - name: album-service
   path: applications/album-service/build/libs/album-service-1.1.0-SNAPSHOT.jar
   services:
   - album-database
+  env:
+    GRANT_TYPE: client_credentials
 - name: movie-service
   path: applications/movie-service/build/libs/movie-service-1.1.0-SNAPSHOT.jar
   services:
   - movie-database
+  env:
+    GRANT_TYPE: client_credentials
 - name: movie-fun-app
   path: applications/movie-fun-app/build/libs/movie-fun-app-1.1.0-SNAPSHOT.war
   env:
