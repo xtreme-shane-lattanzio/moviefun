@@ -7,7 +7,7 @@ def getMysqlCredentials(cfAppName) {
     process.waitFor()
 
     if (process.exitValue() != 0) {
-        return extension
+        return null
     }
 
     def vcapServices = new JsonSlurper().parseText(

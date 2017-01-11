@@ -1,0 +1,69 @@
+def services = [
+    [type: "p-mysql", plan: "100mb", instance: "movie-database"],
+    [type: "p-mysql", plan: "100mb", instance: "album-database"],
+    [type: "p-identity", plan: "basic-sso", instance: "movie-fun-sso"],
+    [type: "p-service-registry", plan: "standard", instance: "movie-fun-registry"],
+]
+
+task teardownPcfEnv {
+    doLast {
+
+        [
+            "cf delete -f album-service",
+            "cf delete -f movie-service",
+            "cf delete -f movie-fun-app",
+        ].each { println it.execute().text }
+
+        services.each {
+            println "cf delete -f $it.instance".execute().text
+        }
+    }
+}
+
+task setupPcfEnv {
+    doLast {
+        services.each {
+            println "cf create-service $it.type $it.plan $it.instance".execute().text
+        }
+    }
+}
+
+task checkCfServices {
+    doLast {
+        def serviceNames = services.collect { it.instance }
+        def counter = 0
+        def allCreated = false
+        def timeout = 274_000
+        def waitTime = 5_000
+
+        while (!allCreated) {
+            if (counter > timeout) {
+                throw new Exception("not all CF services have been created after ${timeout / 1000} seconds")
+            }
+
+            allCreated = serviceNames.inject(true) { memo, name ->
+                def status = "cf service $name".execute().text
+                def isCreated = status.contains("create succeeded")
+
+                memo && isCreated
+            }
+
+            counter += waitTime
+            sleep waitTime
+        }
+    }
+}
+
+task deploy {
+    doLast {
+        "cf push".execute().in.eachLine { line ->
+            println line
+        }
+    }
+}
+
+setupPcfEnv.mustRunAfter teardownPcfEnv
+checkCfServices.mustRunAfter setupPcfEnv
+deploy.mustRunAfter checkCfServices
+
+task resetPcfEnv(dependsOn: [teardownPcfEnv, setupPcfEnv, checkCfServices, deploy])
