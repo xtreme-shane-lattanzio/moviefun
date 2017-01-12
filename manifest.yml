@@ -21,3 +21,5 @@ applications:
     GRANT_TYPE: client_credentials
 - name: movie-fun-app
   path: applications/movie-fun-app/build/libs/movie-fun-app-1.1.0-SNAPSHOT.war
+  services:
+  - movie-fun-config
