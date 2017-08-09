@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
 
-@Profile("development")
+@Profile("!development")
 @Configuration
 public class DevelopmentSecurityConfig {
 

@@ -1,0 +1,38 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: java
+    tag: '8'
+
+inputs:
+- name: moviefun
+- name: version
+
+outputs:
+- name: build-output
+
+run:
+  path: bash
+  args:
+    - -exc
+    # || mysql stop <-- this is used to ensure that we always stop mysql, and concourse detects failures correctly.
+    - |
+      export DEBIAN_FRONTEND="noninteractive"
+      apt-get update
+      apt-get -y install mariadb-server
+      service mysql start
+
+      cd moviefun
+
+      mysql -uroot < databases/create_databases.sql
+
+      ./gradlew testMigrate clean build || (service mysql stop && exit 1)
+
+      cp applications/movie-fun-app/build/libs/movie-fun-app.war ../build-output/movie-fun-app-`cat ../version/number`.war
+      cp applications/movie-service/build/libs/movie-service.jar ../build-output/movie-service-`cat ../version/number`.jar
+      cp applications/album-service/build/libs/album-service.jar ../build-output/album-service-`cat ../version/number`.jar
+
+      service mysql stop

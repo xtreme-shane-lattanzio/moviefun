@@ -1,0 +1,119 @@
+---
+resource_types:
+  - name: google-cloud-storage
+    type: docker-image
+    source:
+      repository: frodenas/gcs-resource
+
+resources:
+- name: moviefun
+  type: git
+  source:
+    uri: {{github-repo}}
+    branch: my-work
+    private_key: {{github-private-key}}
+
+- name: version
+  type: semver
+  source:
+    bucket: {{gcs-bucket}}
+    endpoint: storage.googleapis.com
+    key: moviefun/version
+    access_key_id: {{gcs-access-key-id}}
+    secret_access_key: {{gcs-secret-access-key}}
+
+- name: movie-fun-app-artifacts
+  type: google-cloud-storage
+  source:
+    bucket: {{gcs-bucket}}
+    regexp: releases/moviefun/movie-fun-app(.*).war
+    json_key: {{gcs-json}}
+
+- name: album-service-artifacts
+  type: google-cloud-storage
+  source:
+    bucket: {{gcs-bucket}}
+    regexp: releases/moviefun/album-service(.*).jar
+    json_key: {{gcs-json}}
+
+- name: movie-service-artifacts
+  type: google-cloud-storage
+  source:
+    bucket: {{gcs-bucket}}
+    regexp: releases/moviefun/movie-service(.*).jar
+    json_key: {{gcs-json}}
+
+- name: cf
+  type: cf
+  source:
+    api: {{cf-url}}
+    username: {{cf-username}}
+    password: {{cf-password}}
+    organization: {{cf-org}}
+    space: Shane Lattanzio
+    skip_cert_check: true
+
+
+jobs:
+- name: build
+  plan:
+  - get: moviefun
+    trigger: true
+  - get: version
+    params:
+      bump: patch
+  - task: build and test
+    file: moviefun/ci/build.yml
+  - put: movie-fun-app-artifacts
+    params:
+      file: build-output/movie-fun-app*.war
+  - put: album-service-artifacts
+    params:
+      file: build-output/album-service*.jar
+  - put: movie-service-artifacts
+    params:
+      file: build-output/movie-service*.jar
+  - put: version
+    params:
+      file: version/number
+
+- name: deploy-movie-fun-app
+  plan:
+  - get: moviefun
+    passed: [build]
+    trigger: true
+  - get: movie-fun-app-artifacts
+    trigger: false
+  - put: cf
+    params:
+      manifest: moviefun/manifest.yml
+      path: movie-fun-app-artifacts/movie-fun-app*.war
+      current_app_name: moviefun
+
+
+- name: deploy-movie-service
+  plan:
+  - get: moviefun
+    passed: [build]
+    trigger: true
+  - get: movie-service-artifacts
+    trigger: false
+  - put: cf
+    params:
+      manifest: moviefun/manifest.yml
+      path: movie-service-artifacts/movie-service*.jar
+      current_app_name: movie-service
+
+
+- name: deploy-album-service
+  plan:
+  - get: moviefun
+    passed: [build]
+    trigger: true
+  - get: album-service-artifacts
+    trigger: false
+  - put: cf
+    params:
+      manifest: moviefun/manifest.yml
+      path: album-service-artifacts/album-service*.jar
+      current_app_name: album-service

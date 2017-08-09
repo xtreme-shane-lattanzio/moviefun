@@ -15,7 +15,7 @@ import org.springframework.web.client.RestOperations;
 
 @Configuration
 @EnableOAuth2Sso
-@Profile("!development")
+@Profile("development")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {

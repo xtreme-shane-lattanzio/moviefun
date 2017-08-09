@@ -3,6 +3,8 @@ package org.superbiz.moviefun.albums;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3Client;
+import com.google.cloud.storage.Storage;
+import com.google.cloud.storage.StorageOptions;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,9 +26,10 @@ public class AlbumServiceApplication {
 
     @Bean
     public BlobStore blobStore() {
-        AWSCredentials credentials = new BasicAWSCredentials(s3AccessKey, s3SecretKey);
-        AmazonS3Client s3Client = new AmazonS3Client(credentials);
+//        AWSCredentials credentials = new BasicAWSCredentials(s3AccessKey, s3SecretKey);
+//        AmazonS3Client s3Client = new AmazonS3Client(credentials);
 
-        return new S3Store(s3Client, s3BucketName);
+        Storage storage = StorageOptions.getDefaultInstance().getService();
+        return new S3Store(storage, "moviefun");
     }
 }
