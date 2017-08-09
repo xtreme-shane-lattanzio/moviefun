@@ -47,6 +47,11 @@ public class S3Store implements BlobStore {
 
         com.google.cloud.storage.Blob blob = s3.get(bucketName, name);
 
+        System.out.println("OMGBUCKET" + blob.getName());
+        System.out.println("OMGBUCKET" + blob.getBucket());
+        System.out.println("OMGBUCKET" + blob.getContent().toString());
+        System.out.println("OMGBUCKET" + blob.getContent());
+        System.out.println("OMGBUCKET" + blob);
 
 //        S3Object s3Object = s3.getObject(bucketName, name);
 //        S3ObjectInputStream content = s3Object.getObjectContent();
