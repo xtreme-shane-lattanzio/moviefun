@@ -29,7 +29,7 @@ run:
 
       mysql -uroot < databases/create_databases.sql
 
-      ./gradlew testMigrate clean build || (service mysql stop && exit 1)
+      ./gradlew clean assemble || (service mysql stop && exit 1)
 
       cp applications/movie-fun-app/build/libs/movie-fun-app.war ../build-output/movie-fun-app-`cat ../version/number`.war
       cp applications/movie-service/build/libs/movie-service.jar ../build-output/movie-service-`cat ../version/number`.jar
