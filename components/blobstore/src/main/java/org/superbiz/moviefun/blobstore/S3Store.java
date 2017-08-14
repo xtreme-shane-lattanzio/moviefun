@@ -11,6 +11,8 @@ import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.Storage;
 import org.apache.tika.Tika;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -20,6 +22,7 @@ import java.util.Optional;
 
 public class S3Store implements BlobStore {
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final Storage s3;
     private final String bucketName;
     private final Tika tika = new Tika();
@@ -46,17 +49,16 @@ public class S3Store implements BlobStore {
 //            return Optional.empty();
 //        }
 
-        System.out.println("OMGBUCKET" + name);
-
-
+        logger.debug("OMGBUCKET" + name);
+        
         BlobId blobId1 = BlobId.of("moviefun", name);
         BlobId blobId2 = BlobId.of("moviefun", "4");
 
-        System.out.println("OMGBUCKET" + blobId1.getName());
-        System.out.println("OMGBUCKET" + blobId1.getBucket());
-        System.out.println("OMGBUCKET" + blobId2.getName());
-        System.out.println("OMGBUCKET" + blobId2.getBucket());
-        System.out.println("OMGBUCKET" + blobId1);
+        logger.debug("OMGBUCKET" + blobId1.getName());
+        logger.debug("OMGBUCKET" + blobId1.getBucket());
+        logger.debug("OMGBUCKET" + blobId2.getName());
+        logger.debug("OMGBUCKET" + blobId2.getBucket());
+        logger.debug("OMGBUCKET" + blobId1);
 
 
         com.google.cloud.storage.Blob blob = s3.get(blobId1);
