@@ -58,7 +58,11 @@ public class CoverCatalog {
         return coverBlob;
     }
 
-    public Blob buildDefaultCoverBlob() {
+    Blob buildDefaultCoverBlob(long albumId) {
+        return buildDefaultCoverBlob();
+    }
+
+    private Blob buildDefaultCoverBlob() {
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream input = classLoader.getResourceAsStream("default-cover.jpg");
 
