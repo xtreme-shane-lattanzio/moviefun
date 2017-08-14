@@ -46,8 +46,20 @@ public class S3Store implements BlobStore {
 //            return Optional.empty();
 //        }
 
-        BlobId blobId = BlobId.of("moviefun", name);
-        com.google.cloud.storage.Blob blob = s3.get(blobId);
+        System.out.println("OMGBUCKET" + name);
+
+
+        BlobId blobId1 = BlobId.of("moviefun", name);
+        BlobId blobId2 = BlobId.of("moviefun", "4");
+
+        System.out.println("OMGBUCKET" + blobId1.getName());
+        System.out.println("OMGBUCKET" + blobId1.getBucket());
+        System.out.println("OMGBUCKET" + blobId2.getName());
+        System.out.println("OMGBUCKET" + blobId2.getBucket());
+        System.out.println("OMGBUCKET" + blobId1);
+
+
+        com.google.cloud.storage.Blob blob = s3.get(blobId1);
 
 //        S3Object s3Object = s3.getObject(bucketName, name);
 //        S3ObjectInputStream content = s3Object.getObjectContent();
