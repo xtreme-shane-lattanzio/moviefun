@@ -38,7 +38,7 @@ public class AlbumServiceApplication {
 
         StorageOptions option = StorageOptions.newBuilder().setCredentials(GoogleCredentials.fromStream(stream)).build();
 
-        Storage storage = StorageOptions.getDefaultInstance().getService();
+        Storage storage = option.getService();
         return new S3Store(storage, "moviefun");
     }
 }

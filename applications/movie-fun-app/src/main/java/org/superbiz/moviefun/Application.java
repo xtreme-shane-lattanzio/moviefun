@@ -44,7 +44,7 @@ public class Application {
     @Value("${s3.bucketName}") String s3BucketName;
 
     @Bean
-    public BlobStore blobStore() throws IOException{
+    public BlobStore blobStore() throws IOException {
 //        AWSCredentials credentials = new BasicAWSCredentials(s3AccessKey, s3SecretKey);
 //        AmazonS3Client s3Client = new AmazonS3Client(credentials);
 
