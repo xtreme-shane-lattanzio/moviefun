@@ -5,7 +5,6 @@ apply plugin: "io.spring.dependency-management"
 apply plugin: "war"
 
 group = "org.superbiz"
-version = "1.1.0-SNAPSHOT"
 description = "OpenEJB :: Web Examples :: Moviefun"
 
 dependencyManagement {
