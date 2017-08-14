@@ -10,7 +10,7 @@ applications:
 - name: album-service
   routes:
     - route: album-service-slattanzio.cfapps.io
-  path: applications/album-service/build/libs/album-service.jar
+  path: ./applications/album-service/build/libs/album-service.jar
   services:
   - album-database
   env:

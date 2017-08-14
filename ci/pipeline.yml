@@ -87,7 +87,7 @@ jobs:
     params:
       manifest: moviefun/manifest.yml
       path: movie-fun-app-artifacts/movie-fun-app*.war
-      current_app_name: moviefun
+      current_app_name: movie-fun-app
 
 
 - name: deploy-movie-service

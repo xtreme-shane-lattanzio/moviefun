@@ -10,12 +10,10 @@ applications:
 - name: movie-fun-app
   routes:
     - route: movie-fun-app-slattanzio.cfapps.io
-  path: applications/movie-fun-app/build/libs/movie-fun-app.war
+  path: ./applications/movie-fun-app/build/libs/movie-fun-app.war
   services:
    - movie-fun-config
    - movie-fun-circuit-breaker
-  env:
-    GRANT_TYPE: client_credentials
 
     #---
     #memory: 1G

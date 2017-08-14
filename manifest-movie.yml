@@ -10,7 +10,7 @@ applications:
 - name: movie-service
   routes:
     - route: movie-service-slattanzio.cfapps.io
-  path: applications/movie-service/build/libs/movie-service.jar
+  path: ./applications/movie-service/build/libs/movie-service.jar
   services:
   - movie-database
   env:
