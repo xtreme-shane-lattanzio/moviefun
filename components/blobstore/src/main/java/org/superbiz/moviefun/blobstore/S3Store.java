@@ -7,6 +7,7 @@ import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.util.IOUtils;
 
 import com.google.cloud.storage.Acl;
+import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.Storage;
 import org.apache.tika.Tika;
@@ -45,13 +46,8 @@ public class S3Store implements BlobStore {
 //            return Optional.empty();
 //        }
 
-        com.google.cloud.storage.Blob blob = s3.get(bucketName, name);
-
-        System.out.println("OMGBUCKET" + blob.getName());
-        System.out.println("OMGBUCKET" + blob.getBucket());
-        System.out.println("OMGBUCKET" + blob.getContent().toString());
-        System.out.println("OMGBUCKET" + blob.getContent());
-        System.out.println("OMGBUCKET" + blob);
+        BlobId blobId = BlobId.of("moviefun", name);
+        com.google.cloud.storage.Blob blob = s3.get(blobId);
 
 //        S3Object s3Object = s3.getObject(bucketName, name);
 //        S3ObjectInputStream content = s3Object.getObjectContent();
