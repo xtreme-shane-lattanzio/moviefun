@@ -6,7 +6,8 @@ services:
 - movie-fun-registry
 env:
   TRUST_CERTS: api.run.pivotal.io,login.run.pivotal.io
-  GOOGLE_CREDENTIALS: {
+  GOOGLE_CREDENTIALS: |
+    {
       "type": "service_account",
       "project_id": "labs-aleung",
       "private_key_id": "ad23c33108e9eb0634759f16872d6d911f5dea94",

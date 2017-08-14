@@ -6,18 +6,19 @@ services:
 - movie-fun-registry
 env:
   TRUST_CERTS: api.run.pivotal.io,login.run.pivotal.io
-  GOOGLE_CREDENTIALS:   {
-                          "type": "service_account",
-                          "project_id": "labs-aleung",
-                          "private_key_id": "ad23c33108e9eb0634759f16872d6d911f5dea94",
-                          "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDkK+JesaUCgnL7\nzgtrZbEEHar8SyYm/DCwyPBg+uPq+cOepI+SW1cjhAqTNvEu7yqcBw14gN9CVZfs\nLoq9hGujWJWfgiUJ7/B27YaPgZUBprDfQOntUsTcbxd+u1IrNqie5Nljue5aMjdx\nrRDpe2+yKMWkdDJUwIDda+FYjord5XTWBS6lDlgmKhTS1sUKqf0oLR1YxgkUo7WA\nVceNjVv9zp+Ojv2IL36QLrWdaC+aqdi/r/xkhPnstKad9ck2i5I5dOVaYQUw9FPl\npnsfGUtvbkK6X2ODUv+4Zip7/kd8fPbIAjEIS998CIWXmPGMW8P1Jh8g+7pHMEtW\nFfxY7MypAgMBAAECggEAbAMaNhmCM53tMKZpYX3SPlCNEMHCXdIkeoukv0QFgMab\nhA4CqRX0OivXlbj8k2tEkHgGOHVJOu2p7XRa2TxGeB0HN2s0fW/INYRbnrOJBi8S\nq5zfICl+Z5tvU975FtvZFt7eygbKfognFvkGeICmb4A9j4wyB0zZs/fNxU41DrUb\npZdmmqXJdsYtlRlNBfr0yow5pRYGSJ8gDGw80dAJDqK2dy2ARcbakU8q5gNqRyZI\nQxVBBLurGHlDhNbGfWjQcgpTFGUuW4I+PsydffgipFKLizS0bWwsrBhTQkkOPMD2\n+I/WQN7LCe+cPxf62BIm6cAWhJi/6rarMv7p+h44wQKBgQD3uXURgSnUfGPYysKF\noUxyFSmBnBqQPCI6VWYbZ9PQ8rgKfXfeL/eiF8PBNZ2MkhPH5J/LVAIGgzTpPON1\nAWrVI6jJnffd9Vc56hnCzLNLHJbpWtS1wYys7FWzqJjli3O7u22VKGswJnAlZoRl\nvAghVcPwtlxjlRu3SaSA8CTY4wKBgQDryzWTJ8BOFrMN/kCXWO2grma51AqRz1nu\n/fIazUrybmhDyeUnop9eDajoFY2Biyf12E+pp5PaB135VcOt84QsKYMv8ldwXrpU\nude96WQEDLExyKIM7kNE/4N3AJRhO8US92ZoxjkLasN/XFmlbTMIcvb5K8igNLuL\nH4D0RXZWAwKBgQDBpSmMO2mVfn8WkrkoeIQnkb9WX86r/TXMX8FnnuwHJBUVriqr\ndteez/Dn8Z9sqSvpUCBRcyP6L0qHIF+1sRvv7OYeZOvDh+tdjFAC5L0q8/hMBgLM\n6bWr3zrHK/4JQc+Aau0oceYIR6PWuKK6XBgG5uI6InNqLL7zsg9z80T6fQKBgQCj\noZnETUm+5zHK/C6G2UfOwji3rNbI6URX/hMNVno0Uzo4ENvd7ZT7CC+3H33b8F4C\n1eIysgCAxawJY+MvzFZk70oC9AKKELLuKSn2uQiXZtdw3PLYVmCIeWkaJGTUNU5G\nIzoGa8kaizSwJb5wdp97tYx+zkukIfQkT/CFk87TUQKBgQCVGPOVFOylDFj5v/tF\nLEFBBFJ0gdgMSK3HJH4ztGeraP4zZ6k/50nqwHGd1ynPzf2Tq3cmlrc7IEAjU0nt\niurQ0k1I2sseh432oxwuH5A3oVtGBGgPhaSrwQvB0Kup/dPjqKXBlMJEjtgImFCw\nKCiTiL8cYIdUzZQnZ/PS9hAuRA==\n-----END PRIVATE KEY-----\n",
-                          "client_email": "871062419587-compute@developer.gserviceaccount.com",
-                          "client_id": "107386902223502088887",
-                          "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-                          "token_uri": "https://accounts.google.com/o/oauth2/token",
-                          "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-                          "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/871062419587-compute%40developer.gserviceaccount.com"
-                        }
+  GOOGLE_CREDENTIALS: |
+    {
+      "type": "service_account",
+      "project_id": "labs-aleung",
+      "private_key_id": "ad23c33108e9eb0634759f16872d6d911f5dea94",
+      "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDkK+JesaUCgnL7\nzgtrZbEEHar8SyYm/DCwyPBg+uPq+cOepI+SW1cjhAqTNvEu7yqcBw14gN9CVZfs\nLoq9hGujWJWfgiUJ7/B27YaPgZUBprDfQOntUsTcbxd+u1IrNqie5Nljue5aMjdx\nrRDpe2+yKMWkdDJUwIDda+FYjord5XTWBS6lDlgmKhTS1sUKqf0oLR1YxgkUo7WA\nVceNjVv9zp+Ojv2IL36QLrWdaC+aqdi/r/xkhPnstKad9ck2i5I5dOVaYQUw9FPl\npnsfGUtvbkK6X2ODUv+4Zip7/kd8fPbIAjEIS998CIWXmPGMW8P1Jh8g+7pHMEtW\nFfxY7MypAgMBAAECggEAbAMaNhmCM53tMKZpYX3SPlCNEMHCXdIkeoukv0QFgMab\nhA4CqRX0OivXlbj8k2tEkHgGOHVJOu2p7XRa2TxGeB0HN2s0fW/INYRbnrOJBi8S\nq5zfICl+Z5tvU975FtvZFt7eygbKfognFvkGeICmb4A9j4wyB0zZs/fNxU41DrUb\npZdmmqXJdsYtlRlNBfr0yow5pRYGSJ8gDGw80dAJDqK2dy2ARcbakU8q5gNqRyZI\nQxVBBLurGHlDhNbGfWjQcgpTFGUuW4I+PsydffgipFKLizS0bWwsrBhTQkkOPMD2\n+I/WQN7LCe+cPxf62BIm6cAWhJi/6rarMv7p+h44wQKBgQD3uXURgSnUfGPYysKF\noUxyFSmBnBqQPCI6VWYbZ9PQ8rgKfXfeL/eiF8PBNZ2MkhPH5J/LVAIGgzTpPON1\nAWrVI6jJnffd9Vc56hnCzLNLHJbpWtS1wYys7FWzqJjli3O7u22VKGswJnAlZoRl\nvAghVcPwtlxjlRu3SaSA8CTY4wKBgQDryzWTJ8BOFrMN/kCXWO2grma51AqRz1nu\n/fIazUrybmhDyeUnop9eDajoFY2Biyf12E+pp5PaB135VcOt84QsKYMv8ldwXrpU\nude96WQEDLExyKIM7kNE/4N3AJRhO8US92ZoxjkLasN/XFmlbTMIcvb5K8igNLuL\nH4D0RXZWAwKBgQDBpSmMO2mVfn8WkrkoeIQnkb9WX86r/TXMX8FnnuwHJBUVriqr\ndteez/Dn8Z9sqSvpUCBRcyP6L0qHIF+1sRvv7OYeZOvDh+tdjFAC5L0q8/hMBgLM\n6bWr3zrHK/4JQc+Aau0oceYIR6PWuKK6XBgG5uI6InNqLL7zsg9z80T6fQKBgQCj\noZnETUm+5zHK/C6G2UfOwji3rNbI6URX/hMNVno0Uzo4ENvd7ZT7CC+3H33b8F4C\n1eIysgCAxawJY+MvzFZk70oC9AKKELLuKSn2uQiXZtdw3PLYVmCIeWkaJGTUNU5G\nIzoGa8kaizSwJb5wdp97tYx+zkukIfQkT/CFk87TUQKBgQCVGPOVFOylDFj5v/tF\nLEFBBFJ0gdgMSK3HJH4ztGeraP4zZ6k/50nqwHGd1ynPzf2Tq3cmlrc7IEAjU0nt\niurQ0k1I2sseh432oxwuH5A3oVtGBGgPhaSrwQvB0Kup/dPjqKXBlMJEjtgImFCw\nKCiTiL8cYIdUzZQnZ/PS9hAuRA==\n-----END PRIVATE KEY-----\n",
+      "client_email": "871062419587-compute@developer.gserviceaccount.com",
+      "client_id": "107386902223502088887",
+      "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+      "token_uri": "https://accounts.google.com/o/oauth2/token",
+      "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+      "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/871062419587-compute%40developer.gserviceaccount.com"
+    }
 applications:
 - name: album-service
   routes:
