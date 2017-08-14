@@ -1,32 +1,51 @@
----
-memory: 1G
-instances: 1
-services:
-#- movie-fun-sso
-- movie-fun-registry
-env:
-  TRUST_CERTS: api.run.pivotal.io,login.run.pivotal.io
-applications:
-- name: album-service
-  routes:
-    - route: album-service-slattanzio.cfapps.io
-  path: applications/album-service/build/libs/album-service-1.1.0-SNAPSHOT.jar
+#---
+#memory: 1G
+#instances: 1
+#services:
+##- movie-fun-sso
+#- movie-fun-registry
+#env:
+#  TRUST_CERTS: api.run.pivotal.io,login.run.pivotal.io
+#applications:
+#- name: album-service
+#  routes:
+#    - route: album-service-slattanzio.cfapps.io
+#  path: applications/album-service/build/libs/album-service.jar
+#  services:
+#  - album-database
+#  env:
+#    GRANT_TYPE: client_credentials
+#- name: movie-service
+#  routes:
+#    - route: movie-service-slattanzio.cfapps.io
+#  path: applications/movie-service/build/libs/movie-service.jar
+#  services:
+#  - movie-database
+#  env:
+#    GRANT_TYPE: client_credentials
+#- name: movie-fun-app
+#  services:
+#  - movie-fun-config
+#  - movie-fun-circuit-breaker
+#  routes:
+#    - route: movie-fun-app-slattanzio.cfapps.io
+#  path: applications/movie-fun-app/build/libs/movie-fun-app.war
+
+  ---
+  memory: 1G
+  instances: 1
   services:
-  - album-database
+  #- movie-fun-sso
+  - movie-fun-registry
   env:
-    GRANT_TYPE: client_credentials
-- name: movie-service
-  routes:
-    - route: movie-service-slattanzio.cfapps.io
-  path: applications/movie-service/build/libs/movie-service-1.1.0-SNAPSHOT.jar
-  services:
-  - movie-database
-  env:
-    GRANT_TYPE: client_credentials
-- name: movie-fun-app
-  services:
-  - movie-fun-config
-  - movie-fun-circuit-breaker
-  routes:
-    - route: movie-fun-app-slattanzio.cfapps.io
-  path: applications/movie-fun-app/build/libs/movie-fun-app-1.1.0-SNAPSHOT.war
+    TRUST_CERTS: api.run.pivotal.io,login.run.pivotal.io
+  applications:
+  - name: movie-fun-app
+    routes:
+      - route: movie-fun-app-slattanzio.cfapps.io
+    path: applications/movie-fun-app/build/libs/movie-fun-app.jar
+    services:
+     - movie-fun-config
+     - movie-fun-circuit-breaker
+    env:
+      GRANT_TYPE: client_credentials

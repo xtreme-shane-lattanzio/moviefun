@@ -85,7 +85,7 @@ jobs:
     trigger: false
   - put: cf
     params:
-      manifest: moviefun/manifest.yml movie-fun-app
+      manifest: moviefun/manifest.yml
       path: movie-fun-app-artifacts/movie-fun-app*.war
       current_app_name: moviefun
 
@@ -99,7 +99,7 @@ jobs:
     trigger: false
   - put: cf
     params:
-      manifest: moviefun/manifest.yml movie-service
+      manifest: moviefun/manifest-movie.yml
       path: movie-service-artifacts/movie-service*.jar
       current_app_name: movie-service
 
@@ -113,6 +113,6 @@ jobs:
     trigger: false
   - put: cf
     params:
-      manifest: moviefun/manifest.yml album-service
+      manifest: moviefun/manifest-album.yml
       path: album-service-artifacts/album-service*.jar
       current_app_name: album-service

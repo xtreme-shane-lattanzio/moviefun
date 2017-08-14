@@ -1,0 +1,17 @@
+---
+memory: 1G
+instances: 1
+services:
+#- movie-fun-sso
+- movie-fun-registry
+env:
+  TRUST_CERTS: api.run.pivotal.io,login.run.pivotal.io
+applications:
+- name: album-service
+  routes:
+    - route: album-service-slattanzio.cfapps.io
+  path: applications/album-service/build/libs/album-service.jar
+  services:
+  - album-database
+  env:
+    GRANT_TYPE: client_credentials
