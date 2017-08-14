@@ -50,7 +50,12 @@ public class CoverCatalog {
 
     @HystrixCommand(fallbackMethod = "buildDefaultCoverBlob")
     public Blob getCover(long albumId) throws IOException, URISyntaxException {
+
+        logger.debug("OMGget cover with id {}", albumId);
+
         Optional<Blob> maybeCoverBlob = blobStore.get(getCoverBlobName(albumId));
+        logger.debug("OMGBLOB", maybeCoverBlob);
+
         Blob coverBlob = maybeCoverBlob.orElseGet(this::buildDefaultCoverBlob);
 
         return coverBlob;

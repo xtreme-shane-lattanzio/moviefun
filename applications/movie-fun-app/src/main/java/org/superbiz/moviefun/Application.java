@@ -20,7 +20,6 @@ import org.superbiz.moviefun.blobstore.S3Store;
 import org.superbiz.moviefun.moviesapi.MovieServlet;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
