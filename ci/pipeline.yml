@@ -26,21 +26,21 @@ resources:
   type: google-cloud-storage
   source:
     bucket: {{gcs-bucket}}
-    regexp: releases/moviefun/movie-fun-app(.*).war
+    regexp: releases/moviefun/movie-fun-app-(.*).war
     json_key: {{gcs-json}}
 
 - name: album-service-artifacts
   type: google-cloud-storage
   source:
     bucket: {{gcs-bucket}}
-    regexp: releases/moviefun/album-service(.*).jar
+    regexp: releases/moviefun/album-service-(.*).jar
     json_key: {{gcs-json}}
 
 - name: movie-service-artifacts
   type: google-cloud-storage
   source:
     bucket: {{gcs-bucket}}
-    regexp: releases/moviefun/movie-service(.*).jar
+    regexp: releases/moviefun/movie-service-(.*).jar
     json_key: {{gcs-json}}
 
 - name: cf
@@ -52,7 +52,6 @@ resources:
     organization: {{cf-org}}
     space: Shane Lattanzio
     skip_cert_check: true
-
 
 jobs:
 - name: build
@@ -86,7 +85,7 @@ jobs:
     trigger: false
   - put: cf
     params:
-      manifest: moviefun/manifest.yml
+      manifest: moviefun/manifest.yml movie-fun-app
       path: movie-fun-app-artifacts/movie-fun-app*.war
       current_app_name: moviefun
 
@@ -100,7 +99,7 @@ jobs:
     trigger: false
   - put: cf
     params:
-      manifest: moviefun/manifest.yml
+      manifest: moviefun/manifest.yml movie-service
       path: movie-service-artifacts/movie-service*.jar
       current_app_name: movie-service
 
@@ -114,6 +113,6 @@ jobs:
     trigger: false
   - put: cf
     params:
-      manifest: moviefun/manifest.yml
+      manifest: moviefun/manifest.yml album-service
       path: album-service-artifacts/album-service*.jar
       current_app_name: album-service
