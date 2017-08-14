@@ -48,20 +48,17 @@ public class CoverCatalog {
         }
     }
 
-//    @HystrixCommand(fallbackMethod = "buildDefaultCoverBlob")
+    @HystrixCommand(fallbackMethod = "buildDefaultCoverBlob")
     public Blob getCover(long albumId) throws IOException, URISyntaxException {
 
-        logger.debug("OMGget cover with id {}", albumId);
-
         Optional<Blob> maybeCoverBlob = blobStore.get(getCoverBlobName(albumId));
-        logger.debug("OMGBLOB", maybeCoverBlob);
 
         Blob coverBlob = maybeCoverBlob.orElseGet(this::buildDefaultCoverBlob);
 
         return coverBlob;
     }
 
-    private Blob buildDefaultCoverBlob() {
+    public Blob buildDefaultCoverBlob() {
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream input = classLoader.getResourceAsStream("default-cover.jpg");
 
