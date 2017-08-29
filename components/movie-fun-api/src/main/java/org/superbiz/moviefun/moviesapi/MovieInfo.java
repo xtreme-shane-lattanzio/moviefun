@@ -1,5 +1,7 @@
 package org.superbiz.moviefun.moviesapi;
 
+import java.util.Collection;
+
 public class MovieInfo {
     private Long id;
     private String title;
@@ -43,6 +45,20 @@ public class MovieInfo {
     public int getRating() {
         return rating;
     }
+
+    public boolean equalIgnoringID(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MovieInfo movieInfo = (MovieInfo) o;
+
+        if (year != movieInfo.year) return false;
+        if (rating != movieInfo.rating) return false;
+        if (director != null ? !director.equals(movieInfo.director) : movieInfo.director != null) return false;
+        if (title != null ? !title.equals(movieInfo.title) : movieInfo.title != null) return false;
+        return genre != null ? genre.equals(movieInfo.genre) : movieInfo.genre == null;
+    }
+
 
     @Override
     public boolean equals(Object o) {

@@ -9,6 +9,7 @@ import org.superbiz.moviefun.moviesapi.MovieFixtures;
 import org.superbiz.moviefun.moviesapi.MovieInfo;
 import org.superbiz.moviefun.moviesapi.MoviesClient;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -28,12 +29,28 @@ public class SetupController {
 
     @GetMapping("/setup")
     public String setup(Map<String, Object> model) {
-        for (MovieInfo movie : movieFixtures.load()) {
-            moviesClient.addMovie(movie);
+
+        boolean isFirstTime = true;
+
+        List<MovieInfo> movies = moviesClient.getMovies();
+        List<MovieInfo> fixtureMovies = movieFixtures.load();
+
+        for(MovieInfo databaseMovie : movies) {
+            for(MovieInfo fixtureMovie : movies) {
+                if (!databaseMovie.equalIgnoringID(fixtureMovie)) {
+                    isFirstTime = false;
+                    break;
+                }
+            }
         }
 
-        for (AlbumInfo album : albumFixtures.load()) {
-            albumsClient.addAlbum(album);
+        if (isFirstTime) {
+            for (MovieInfo movie : fixtureMovies) {
+                moviesClient.addMovie(movie);
+            }
+            for (AlbumInfo album : albumFixtures.load()) {
+                albumsClient.addAlbum(album);
+            }
         }
 
         model.put("movies", moviesClient.getMovies());

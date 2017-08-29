@@ -52,7 +52,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="#">Moviefun</a>
+            <a class="brand" href="/">Moviefun</a>
         </div>
     </div>
 </div>
