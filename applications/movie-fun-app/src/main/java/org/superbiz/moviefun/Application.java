@@ -52,7 +52,7 @@ public class Application {
         StorageOptions option = StorageOptions.newBuilder().setCredentials(GoogleCredentials.fromStream(stream)).build();
 
         Storage storage = option.getService();
-        return new S3Store(storage, "moviefun");
+        return new S3Store(storage, "moviefunagain");
     }
 
     @Bean

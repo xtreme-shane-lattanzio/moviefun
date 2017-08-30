@@ -49,7 +49,7 @@ public class S3Store implements BlobStore {
 //            return Optional.empty();
 //        }
 
-        BlobId blobId = BlobId.of("moviefun", name);
+        BlobId blobId = BlobId.of("moviefunagain", name);
 
         com.google.cloud.storage.Blob blob = s3.get(blobId);
 
