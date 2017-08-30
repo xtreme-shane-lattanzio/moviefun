@@ -22,7 +22,7 @@ import javax.servlet.http.Part;
 @MultipartConfig()
 public class UploadServlet extends HttpServlet {
 
-    private static final String BUCKET_NAME = "moviefunagain";
+    private static final String BUCKET_NAME = System.getenv("MOVIE_BUCKET");
     private static Storage storage = null;
 
     @Override
